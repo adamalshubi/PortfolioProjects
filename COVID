@@ -65,5 +65,15 @@ FROM `covid-387722.covid.covid_deaths`
 WHERE continent is not null
 
 ORDER BY 1,2
+-- Global data
 
---GLOBAL DATA
+SELECT location, SUM(new_deaths) as total_death_count,
+FROM `covid-387722.covid.covid_deaths`
+WHERE continent is null
+and location not in ('World','European Union','international', 'High income', 'Upper middle income', 'Low income','Lower middle income')
+GROUP BY location
+ORDER BY total_death_count desc
+
+--total death count per continent
+
+
